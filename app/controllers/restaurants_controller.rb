@@ -1,17 +1,21 @@
 class RestaurantsController < ApplicationController
 
   def index
-    if params[:search] == ""
-      # @restaurants = []
-      render json: []
-    elsif params[:search]
-      # @restaurants = Restaurant.all.select{|restaurant| restaurant.restaurantname.downcase.include?(params[:search].downcase)}
-      render json: Restaurant.all.select{|restaurant| restaurant.restaurantname.downcase.include?(params[:search].downcase)}
-    else
-      @restaurants = Restaurant.all
-    end
-
+    # if params[:search] == ""
+    #   # @restaurants = []
+    #   # render json: []
+      render json: Restaurant.get_nyc_restaurants
+    # elsif params[:search]
+    #   # @restaurants = Restaurant.all.select{|restaurant| restaurant.restaurantname.downcase.include?(params[:search].downcase)}
+    #   # render json: @restaurants.select{|restaurant| restaurant.restaurantname.downcase.include?(params[:search].downcase)}
+    #   # render json: Restaurant.all
+    #   render json:  Restaurant.get_nyc_restaurants
+    # else
+    #   # @restaurants = Restaurant.all
+    #   render json: @restaurants
+    # end
     # render json: Restaurant.all
+
   end
 
   # def new
@@ -19,14 +23,16 @@ class RestaurantsController < ApplicationController
   # end
 
   def create
-      @restaurant = Restaurant.create(restaurant_params)
-        return redirect_to controller: 'restaurants', action: 'new' unless @restaurant.save
-      session[:restaurant_id] = @restaurant.id
-      redirect_to restaurant_path(@restaurant)
+  # render json: Restaurant.find_or_create_by(@restaurant_id)
+
+      # @restaurant = Restaurant.create(restaurant_params)
+      #   return redirect_to controller: 'restaurants', action: 'new' unless @restaurant.save
+      # session[:restaurant_id] = @restaurant.id
+      # redirect_to restaurant_path(@restaurant)
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+    # @restaurant = Restaurant.find(params[:id])
   end
 
   # def edit
@@ -34,16 +40,16 @@ class RestaurantsController < ApplicationController
   # end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
-    if @restaurant.update(restaurant_params)
-      redirect_to @restaurant
-    else
-      redirect_to @restaurant
-    end
+    # @restaurant = Restaurant.find(params[:id])
+    # if @restaurant.update(restaurant_params)
+    #   redirect_to @restaurant
+    # else
+    #   redirect_to @restaurant
+    # end
   end
 
   def destroy
-    @restaurant = Restaurant.find(params[:id])
+    # @restaurant = Restaurant.find(params[:id])
   end
 
 private
