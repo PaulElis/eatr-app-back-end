@@ -1,4 +1,4 @@
-class RestaurantsController < ApplicationController
+class BusinessesController < ApplicationController
 
   def index
     # if params[:search] == ""
@@ -27,7 +27,7 @@ class RestaurantsController < ApplicationController
     #   return redirect_to controller: 'restaurants', action: 'new' unless @restaurant.save
     # session[:restaurant_id] = @restaurant.id
     # redirect_to restaurant_path(@restaurant)
-    
+
     # render json: Restaurant.find_or_create_by(@restaurant_id)
   end
 

@@ -15,12 +15,13 @@ ActiveRecord::Schema.define(version: 20180503135634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "restaurants", force: :cascade do |t|
-    t.integer "rest_id"
+  create_table "businesses", force: :cascade do |t|
+    t.integer "yelp_id"
     t.string "name"
     t.string "cuisine"
+    t.integer "price"
+    t.integer "rating"
     t.string "address"
-    t.integer "average_cost"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -31,7 +32,7 @@ ActiveRecord::Schema.define(version: 20180503135634) do
     t.integer "rating"
     t.string "image"
     t.integer "user_id"
-    t.integer "restaurant_id"
+    t.integer "business_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
