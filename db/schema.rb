@@ -16,12 +16,13 @@ ActiveRecord::Schema.define(version: 20180503135634) do
   enable_extension "plpgsql"
 
   create_table "businesses", force: :cascade do |t|
-    t.integer "yelp_id"
+    t.string "yelp_id"
     t.string "name"
     t.string "cuisine"
-    t.integer "price"
+    t.string "price"
     t.integer "rating"
     t.string "address"
+    t.string "url"
     t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

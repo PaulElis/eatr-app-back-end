@@ -2,60 +2,60 @@ class BusinessesController < ApplicationController
 
   def index
     # if params[:search] == ""
-    #   # @restaurants = []
+    #   # @businesses = []
     #   # render json: []
     # elsif params[:search]
-    #   # @restaurants = Restaurant.all.select{|restaurant| restaurant.restaurantname.downcase.include?(params[:search].downcase)}
-    #   # render json: @restaurants.select{|restaurant| restaurant.restaurantname.downcase.include?(params[:search].downcase)}
-    #   # render json: Restaurant.all
-    #   render json:  Restaurant.get_nyc_restaurants
+    #   # @businesses = Business.all.select{|business| business.businessname.downcase.include?(params[:search].downcase)}
+    #   # render json: @businesses.select{|business| business.businessname.downcase.include?(params[:search].downcase)}
+    #   # render json: Business.all
+    #   render json:  Business.get_nyc_businesses
     # else
-    #   # @restaurants = Restaurant.all
-    #   render json: @restaurants
+    #   # @businesses = Business.all
+    #   render json: @businesses
     # end
-    # render json: Restaurant.all
+    # render json: Business.all
 
-    render json: Restaurant.all
+    render json: Business.all
   end
 
   # def new
-  #   @restaurant = Restaurant.new
+  #   @business = Business.new
   # end
 
   def create
-    # @restaurant = Restaurant.create(restaurant_params)
-    #   return redirect_to controller: 'restaurants', action: 'new' unless @restaurant.save
-    # session[:restaurant_id] = @restaurant.id
-    # redirect_to restaurant_path(@restaurant)
+    # @business = Business.create(business_params)
+    #   return redirect_to controller: 'businesses', action: 'new' unless @business.save
+    # session[:business_id] = @business.id
+    # redirect_to business_path(@business)
 
-    # render json: Restaurant.find_or_create_by(@restaurant_id)
+    # render json: Business.find_or_create_by(@business_id)
   end
 
   def show
-    render json: Restaurant.find(params[:id])
+    render json: Business.find(params[:id])
   end
 
   # def edit
-  #   @restaurant = Restaurant.find(params[:id])
+  #   @business = Business.find(params[:id])
   # end
 
   def update
-    # @restaurant = Restaurant.find(params[:id])
-    # if @restaurant.update(restaurant_params)
-    #   redirect_to @restaurant
+    # @business = Business.find(params[:id])
+    # if @business.update(business_params)
+    #   redirect_to @business
     # else
-    #   redirect_to @restaurant
+    #   redirect_to @business
     # end
   end
 
   def destroy
-    # @restaurant = Restaurant.find(params[:id])
+    # @business = Business.find(params[:id])
   end
 
 private
 
-  def restaurant_params
-    params.require(:restaurant).permit(:name, :cuisine, :address, :average_cost, :image)
+  def business_params
+    params.require(:business).permit(:name, :cuisine, :address, :price, :image, :url, :rating, :yelp_id)
   end
 
 end
