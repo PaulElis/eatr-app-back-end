@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20180503135634) do
   enable_extension "plpgsql"
 
   create_table "restaurants", force: :cascade do |t|
+    t.integer "rest_id"
     t.string "name"
     t.string "cuisine"
     t.string "address"
