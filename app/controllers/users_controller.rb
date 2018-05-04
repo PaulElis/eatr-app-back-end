@@ -1,36 +1,26 @@
 class UsersController < ApplicationController
 
   def index
-    # if params[:search] == ""
-    #   @users = []
-    # elsif params[:search]
-    #   @users = User.all.select{|user| user.username.downcase.include?(params[:search].downcase)}
-    # else
-    #   @users = User.all
-    # end
     render json: User.all
   end
 
-  def new
-    # @user = User.new
-  end
+  # def new
+  # end
 
   def create
     @user = User.create(user_params)
     render json: @user
   end
 
-  def logout
-  end
+  # def logout
+  # end
 
   def show
-    # @user = User.find(params[:id])
     render json: User.find(params[:id])
   end
 
-  def edit
-    # @user = User.find(params[:id])
-  end
+  # def edit
+  # end
 
   def update
     @user = User.find(params[:id])
@@ -41,14 +31,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def destroy
+  # def destroy
     # @user = User.find(params[:id])
-  end
+    # @user.destroy
+    # render json: {success: "Successfully Destroyed"}
+  # end
 
 private
 
   def user_params
-    params.require(:user).permit(:username, :favorites, :image)
+    params.require(:user).permit(:username, :favorites, :image_url)
   end
 
 end

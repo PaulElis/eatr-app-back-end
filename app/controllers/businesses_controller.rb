@@ -1,61 +1,35 @@
 class BusinessesController < ApplicationController
 
   def index
-    # if params[:search] == ""
-    #   # @businesses = []
-    #   # render json: []
-    # elsif params[:search]
-    #   # @businesses = Business.all.select{|business| business.businessname.downcase.include?(params[:search].downcase)}
-    #   # render json: @businesses.select{|business| business.businessname.downcase.include?(params[:search].downcase)}
-    #   # render json: Business.all
-    #   render json:  Business.get_nyc_businesses
-    # else
-    #   # @businesses = Business.all
-    #   render json: @businesses
-    # end
-    # render json: Business.all
-
     render json: Business.all
   end
 
   # def new
-  #   @business = Business.new
   # end
 
-  def create
-    # @business = Business.create(business_params)
-    #   return redirect_to controller: 'businesses', action: 'new' unless @business.save
-    # session[:business_id] = @business.id
-    # redirect_to business_path(@business)
-
+  # def create
     # render json: Business.find_or_create_by(@business_id)
-  end
+  # end
 
   def show
-    render json: Business.find(params[:id])
+    @business = Business.find(params[:id])
+    render json: {business: @business, reviews: @business.reviews}
   end
 
   # def edit
-  #   @business = Business.find(params[:id])
   # end
 
-  def update
-    # @business = Business.find(params[:id])
-    # if @business.update(business_params)
-    #   redirect_to @business
-    # else
-    #   redirect_to @business
-    # end
-  end
+  # def update
+  # end
 
-  def destroy
+  # def destroy
     # @business = Business.find(params[:id])
-  end
+  # end
 
 private
 
   def business_params
-    params.require(:business).permit(:name, :cuisine, :address, :price, :image, :url, :rating, :yelp_id)
+    params.require(:business).permit(:yelp_id, :name, :cuisine, :address, :price, :image, :url, :rating)
   end
 
 end

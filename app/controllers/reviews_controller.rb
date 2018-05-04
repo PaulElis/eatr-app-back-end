@@ -1,51 +1,46 @@
 class ReviewsController < ApplicationController
 
   def index
-    if params[:search] == ""
-    @reviews = []
-    elsif params[:search]
-    @reviews = Review.all.select{|review| review.reviewname.downcase.include?(params[:search].downcase)}
-    else
-    @reviews = Review.all
-    end
+    render json: Review.all
   end
 
-  def new
-    @review = Review.new
-  end
+  # def new
+  # end
 
   def create
-      @review = Review.create(review_params)
-        return redirect_to controller: 'reviews', action: 'new' unless @review.save
-      session[:review_id] = @review.id
-      redirect_to review_path(@review)
+    @review = Review.create(review_params)
+    render json: @review
   end
+
+  # def logout
+  # end
 
   def show
-    @review = Review.find(params[:id])
+    render json: Review.find(params[:id])
   end
 
-  def edit
-    @review = Review.find(params[:id])
-  end
+  # def edit
+  # end
 
   def update
     @review = Review.find(params[:id])
     if @review.update(review_params)
-      redirect_to @review
+      render json: @review
     else
-      redirect_to @review
+      render json: {error: 'Error!'}
     end
   end
 
-  def destroy
-    @review = Review.find(params[:id])
-  end
+  # def destroy
+    # @review = Review.find(params[:id])
+    # @review.destroy
+    # render json: {success: "Successfully Destroyed"}
+  # end
 
 private
 
   def review_params
-    params.require(:review).permit(:text, :rating, :image, :user_id, :restaurant_id)
+    params.require(:review).permit(:text, :rating, :image_url, :review_id, :restaurant_id)
   end
 
 end
