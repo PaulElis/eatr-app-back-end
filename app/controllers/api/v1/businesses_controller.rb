@@ -29,7 +29,7 @@ class Api::V1::BusinessesController < ApplicationController
 private
 
   def business_params
-    params.require(:business).permit(:yelp_id, :name, :cuisine, :address, :price, :image, :url, :rating)
+    params.require(:business).permit(:yelp_id, :name, :cuisine, :address, :city, :state, :zip_code, :price, :review_count, :image, :url, :rating)
   end
 
 end
