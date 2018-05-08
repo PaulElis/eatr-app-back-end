@@ -7,7 +7,7 @@ class Business < ApplicationRecord
   validates :yelp_id, presence: true, uniqueness: true
 
 
-  def self.yelp_search(sort_base=nil)
+  def self.yelp_search(search, sort_base=nil)
     key = 'Oy-rX2J3k7faj2cCZCiXvgyEfoQCMgQELMqmQ90eOiQavkNYjyYNLhBjVZJKy5SchfniUakBbgaChA_yEOBCrci_s5SWmf2ElsTvQDgvl6K9d-21XM2Kv0NB5nHsWnYx'
     limit = "&limit=50"
     search = "restaurants"
