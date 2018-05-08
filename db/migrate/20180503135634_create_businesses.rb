@@ -10,8 +10,8 @@ class CreateBusinesses < ActiveRecord::Migration[5.1]
       t.string :city
       t.string :state
       t.string :zip_code
-      t.integer :lat
-      t.integer :long
+      t.float :lat
+      t.float :long
       t.integer :review_count
       t.string :url
       t.string :image

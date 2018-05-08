@@ -10,6 +10,8 @@ class Business < ApplicationRecord
   def self.yelp_search(search=nil, location=nil, sort_base=nil)
     key = 'Oy-rX2J3k7faj2cCZCiXvgyEfoQCMgQELMqmQ90eOiQavkNYjyYNLhBjVZJKy5SchfniUakBbgaChA_yEOBCrci_s5SWmf2ElsTvQDgvl6K9d-21XM2Kv0NB5nHsWnYx'
     limit = "&limit=21"
+    # search = "restaurants"
+    # location = "east village, New York City"
     categories = "&categories=#{}"
     price = "&price=#{}"
 
@@ -18,10 +20,6 @@ class Business < ApplicationRecord
     else
       sort_by = ''
     end
-    # byebug
-
-    # lat = 40.732013
-    # lon = -73.996155
 
     request = RestClient.get("https://api.yelp.com/v3/businesses/search?term=#{search}&location=#{location}#{categories}#{price}#{limit}" + "#{sort_by}", {'Authorization': "Bearer #{key}"})
 
