@@ -7,9 +7,10 @@ class Api::V1::BusinessesController < ApplicationController
   # def new
   # end
 
-  # def create
-    # render json: Business.find_or_create_by(@business_id)
-  # end
+  def create
+    newBusinesses = Business.yelp_search(params[:search][:searchTerm], params[:search][:location])
+    render json: {results: newBusinesses}
+  end
 
   def show
     @business = Business.find(params[:id])
@@ -29,7 +30,7 @@ class Api::V1::BusinessesController < ApplicationController
 private
 
   def business_params
-    params.require(:business).permit(:yelp_id, :name, :cuisine, :address, :city, :state, :zip_code, :price, :review_count, :image, :url, :rating)
+    params.require(:business).permit(:yelp_id, :name, :cuisine, :address, :city, :state, :zip_code, :lat, :long, :price, :review_count, :image, :url, :rating)
   end
 
 end

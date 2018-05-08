@@ -7,11 +7,9 @@ class Business < ApplicationRecord
   validates :yelp_id, presence: true, uniqueness: true
 
 
-  def self.yelp_search(search, sort_base=nil)
+  def self.yelp_search(search=nil, location=nil, sort_base=nil)
     key = 'Oy-rX2J3k7faj2cCZCiXvgyEfoQCMgQELMqmQ90eOiQavkNYjyYNLhBjVZJKy5SchfniUakBbgaChA_yEOBCrci_s5SWmf2ElsTvQDgvl6K9d-21XM2Kv0NB5nHsWnYx'
-    limit = "&limit=50"
-    search = "restaurants"
-    location = "soho, New York City"
+    limit = "&limit=21"
     categories = "&categories=#{}"
     price = "&price=#{}"
 
@@ -30,7 +28,7 @@ class Business < ApplicationRecord
     response = JSON.parse(request)['businesses']
 
     businesses = response.map do |business|
-      Business.create(yelp_id: business['id'], name: business['name'], address: business['location']['address1'], city: business['location']['city'], state: business['location']['state'], zip_code: business['location']['zip_code'], cuisine: business['categories'][0]['title'], price: business['price'], rating: business['rating'], review_count: business['review_count'], image: business['image_url'], url: business['url'])
+      Business.create(yelp_id: business['id'], name: business['name'], address: business['location']['address1'], city: business['location']['city'], state: business['location']['state'], zip_code: business['location']['zip_code'], lat: business['coordinates']['latitude'], long: business['coordinates']['longitude'], cuisine: business['categories'][0]['title'], price: business['price'], rating: business['rating'], review_count: business['review_count'], image: business['image_url'], url: business['url'])
     end
   end
 
