@@ -8,7 +8,7 @@ class Api::V1::BusinessesController < ApplicationController
   # end
 
   def create
-    newBusinesses = Business.yelp_search(params[:search][:searchTerm], params[:search][:location])
+    newBusinesses = Business.yelp_search(params[:search], params[:location])
     render json: {results: newBusinesses}
   end
 
