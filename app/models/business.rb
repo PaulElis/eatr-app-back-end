@@ -8,12 +8,12 @@ class Business < ApplicationRecord
 
 
   def self.yelp_search(search=nil, location=nil, sort_base=nil)
-    key = 'Oy-rX2J3k7faj2cCZCiXvgyEfoQCMgQELMqmQ90eOiQavkNYjyYNLhBjVZJKy5SchfniUakBbgaChA_yEOBCrci_s5SWmf2ElsTvQDgvl6K9d-21XM2Kv0NB5nHsWnYx'
+    key = 'PBQ2ofgdx74cO85ZLdGQEvPP0Y38D8EPp6NIAT5aeBB9dy-RowD_WcA07tC9AaZ5MIhlNqvbpxSeQA4RwIZO8qeP1FCMXHBD9tR3K3D8ZBPLI41nVxXh06QiaggbW3Yx'
     limit = "&limit=21"
     # search = "restaurants"
-    # location = "east village, New York City"
-    categories = "&categories=#{}"
-    price = "&price=#{}"
+    location = "New York, New York"
+    # categories = "&categories=#{}"
+    # price = "&price=#{}"
 
     if sort_base
       sort_by = "&sort_by=#{sort_base}"
@@ -21,7 +21,8 @@ class Business < ApplicationRecord
       sort_by = ''
     end
 
-    request = RestClient.get("https://api.yelp.com/v3/businesses/search?term=#{search}&location=#{location}#{categories}#{price}#{limit}" + "#{sort_by}", {'Authorization': "Bearer #{key}"})
+    request = RestClient.get("https://api.yelp.com/v3/businesses/search?term=#{search}&location=#{location}", {'Authorization': "Bearer #{key}"})
+    # request = RestClient.get("https://api.yelp.com/v3/businesses/search?term=#{search}&location=#{location}#{categories}#{price}#{limit}" + "#{sort_by}", {'Authorization': "Bearer #{key}"})
 
     response = JSON.parse(request)['businesses']
 
